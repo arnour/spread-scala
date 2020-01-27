@@ -30,7 +30,7 @@ class SpreaderTest extends UnitSpec {
   }
 
   "A Spreader" should "keep compliant with spread go-lang" in {
-    for (line <- Source.fromResource("sha1.txt").getLines()) {
+    for (line <- streamResource("/sha1.txt").getLines()) {
       val parts = line.split(";")
       val result = Spread.SHA1.key(parts(0))
       scale(result) should equal(scale(parts(1)) +- 0.000000000001)
